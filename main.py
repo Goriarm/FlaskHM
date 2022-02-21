@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 from utils import get_settings, candidate_by_cid,  get_candidates, search_candidates_by_name, get_candidate_by_skill
 
@@ -14,7 +14,7 @@ def index():
         return f"""Приложение работает <br>
         <form action="/list"> 
         <input type = "submit" value="Перейти к кандидатам">
-        """
+        """, render_template("index.html")
 
     return "Приложение не работает"
 
@@ -30,7 +30,7 @@ def page_candidate(cid):
     <p>{candidate["skills"]}</p>
     """
 
-    return page_content
+    return page_content, render_template("candidate.html")
 
 @app.route("/list")
 def page_list_of_candidates():
@@ -42,7 +42,7 @@ def page_list_of_candidates():
         page_content += f"""
             <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
             """
-    return page_content
+    return page_content, render_template("list.html")
 
 @app.route("/search")
 def page_search_by_name():
@@ -58,7 +58,7 @@ def page_search_by_name():
         page_content += f"""
             <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
             """
-    return page_content
+    return page_content, render_template("search.html")
 
 @app.route("/skill/<skill_name>")
 def page_search_by_skils(skill_name):
@@ -72,6 +72,6 @@ def page_search_by_skils(skill_name):
         page_content += f"""
             <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
             """
-    return page_content
+    return page_content, render_template("skill.html")
 
 app.run()
