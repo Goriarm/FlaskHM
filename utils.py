@@ -1,7 +1,7 @@
 import json
-import pprint
 
 from config import CANDIDATES_PATH, SETTINGS_PATH
+
 
 def get_settings():
     """
@@ -12,6 +12,7 @@ def get_settings():
         data = json.load(f)
     return data
 
+
 def get_candidates():
     """
     Обрабатывает Json список кандидатов
@@ -20,6 +21,7 @@ def get_candidates():
     with open(CANDIDATES_PATH, "r", encoding="utf-8") as f:
         data2 = json.load(f)
     return data2
+
 
 def candidate_by_cid(cid):
     """
@@ -58,6 +60,7 @@ def search_candidates_by_name(name):
 
     return candidates_match
 
+
 def get_candidate_by_skill(skill_name):
 
     settings = get_settings()
@@ -75,11 +78,4 @@ def get_candidate_by_skill(skill_name):
             candidates_match.append(candidate)
 
     return candidates_match[:limit]
-
-pprint.pprint(get_candidate_by_skill("py"))
-
-
-
-
-
 

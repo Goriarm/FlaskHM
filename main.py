@@ -32,6 +32,7 @@ def page_candidate(cid):
 
     return page_content, render_template("candidate.html")
 
+
 @app.route("/list")
 def page_list_of_candidates():
 
@@ -43,6 +44,7 @@ def page_list_of_candidates():
             <p><a href="/candidate/{candidate["id"]}">{candidate["name"]}</a></p>
             """
     return page_content, render_template("list.html")
+
 
 @app.route("/search")
 def page_search_by_name():
@@ -60,6 +62,7 @@ def page_search_by_name():
             """
     return page_content, render_template("search.html")
 
+
 @app.route("/skill/<skill_name>")
 def page_search_by_skils(skill_name):
 
@@ -74,4 +77,6 @@ def page_search_by_skils(skill_name):
             """
     return page_content, render_template("skill.html")
 
-app.run()
+
+if __name__ == "__main__":
+    app.run()
